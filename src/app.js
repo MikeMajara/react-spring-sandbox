@@ -29,7 +29,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="container" onScroll={onScroll}>
+    <Flex className="container" onScroll={onScroll}>
       <div
         style={{
           position: "relative",
@@ -38,17 +38,40 @@ export default function App() {
           width: "100%"
         }}
       >
-        <animated.div
+        <AnimatedBox
           id="header"
           style={{
             position: "fixed",
             width: "100%",
-            height: scroll.interpolate([0, 0.8], ["200px", "100px"]),
-            backgroundColor: scroll.interpolate([0, 0.8], ["tomato", "purple"])
+            height: scroll.interpolate(
+              [0, 0.2, 1],
+              ["200px", "100px", "100px"]
+            ),
+            backgroundColor: scroll.interpolate([0, 0.8], ["tomato", "purple"]),
+            boxShadow: scroll.interpolate(
+              [0, 0.2, 1],
+              [
+                "0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04)",
+                "0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06)",
+                "0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06)"
+              ]
+            )
           }}
-        ></animated.div>
+          boxShadow="xl"
+        >
+          <AnimatedImage
+            src="/home-icon.png"
+            style={{
+              height: scroll.interpolate(
+                [0, 0.2, 1],
+                ["180px", "80px", "80px"]
+              ),
+              margin: "10px"
+            }}
+          ></AnimatedImage>
+        </AnimatedBox>
         <div id="body">asdf</div>
       </div>
-    </div>
+    </Flex>
   );
 }
